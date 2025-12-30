@@ -74,14 +74,18 @@ class S3Operations(object):
         )
 
 
-        document = frappe.get_doc(parent_doctype,parent_name)
-        try:
-            year = frappe.utils.getdate(document.posting_date).year
-        except:
+        # Handle unsaved documents (new-supplier-1, new-customer-1, etc.)
+        if parent_name and parent_name.startswith('new-'):
+            year = frappe.utils.getdate(frappe.utils.nowdate()).year
+        else:
+            document = frappe.get_doc(parent_doctype, parent_name)
             try:
-                year = frappe.utils.getdate(document.transaction_date).year
+                year = frappe.utils.getdate(document.posting_date).year
             except:
-                year = frappe.utils.getdate(document.creation).year
+                try:
+                    year = frappe.utils.getdate(document.transaction_date).year
+                except:
+                    year = frappe.utils.getdate(document.creation).year
 
         # if not doc_path:
         # if self.folder_name:
