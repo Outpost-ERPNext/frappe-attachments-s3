@@ -1,0 +1,9 @@
+[tool.bench.frappe-dependencies]
+frappe = ">=10.0.0,<17.0.0"
+
+dependencies = [
+        "boto3==1.18.49",
+        "libmagic==1.0",
+        "urllib3==1.26.4",
+        "python-magic==0.4.27"
+]
