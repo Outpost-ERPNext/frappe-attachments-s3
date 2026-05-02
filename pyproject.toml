@@ -1,9 +1,14 @@
-[tool.bench.frappe-dependencies]
-frappe = ">=10.0.0,<17.0.0"
+[project]
+name = "frappe-attachments-s3"
+version = "0.0.1"
+requires-python = ">=3.6,<3.10"
 
 dependencies = [
-        "boto3==1.18.49",
-        "libmagic==1.0",
-        "urllib3==1.26.4",
-        "python-magic==0.4.27"
+    "xlsxwriter",
+    "gspread",
+    "geopy",
+    "qrcode"
 ]
+
+[tool.bench.frappe-dependencies]
+frappe = ">=13.0.0,<14.0.0"
