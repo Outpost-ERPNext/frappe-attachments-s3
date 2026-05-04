@@ -7,7 +7,8 @@ dependencies = [
     "xlsxwriter",
     "gspread",
     "geopy",
-    "qrcode"
+    "qrcode",
+    "python-magic"
 ]
 
 [tool.bench.frappe-dependencies]
