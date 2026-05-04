@@ -1,5 +1,5 @@
 [project]
-name = "frappe-attachments-s3"
+name = "frappe_s3_attachment"
 version = "0.0.1"
 
 
