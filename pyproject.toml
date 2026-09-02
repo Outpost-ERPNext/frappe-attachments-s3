@@ -7,7 +7,9 @@ dependencies = [
     "xlsxwriter",
     "gspread",
     "geopy",
-    "qrcode"
+    "qrcode",
+    "cryptography~=46.0.3",
+    "pyOpenSSL~=26.0.0"
 ]
 
 [tool.bench.frappe-dependencies]

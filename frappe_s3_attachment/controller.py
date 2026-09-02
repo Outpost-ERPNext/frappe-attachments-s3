@@ -308,6 +308,14 @@ def upload_existing_files_s3(name, file_name):
             file_path = site_path + '/public' + path
         else:
             file_path = site_path + path
+
+        if not os.path.exists(file_path):
+            frappe.log_error(
+                title="S3 Migration: local file missing",
+                message="Skipped File {0}, local file not found: {1}".format(doc.name, file_path)
+            )
+            return
+
         key,filename = s3_upload.upload_files_to_s3_with_key(
             file_path, doc.file_name,
             doc.is_private, parent_doctype,
@@ -359,7 +367,13 @@ def migrate_existing_files():
         for file in files_list:
             if file['file_url']:
                 if not s3_file_regex_match(file['file_url']):
-                    upload_existing_files_s3(file['name'], file['file_name'])
+                    try:
+                        upload_existing_files_s3(file['name'], file['file_name'])
+                    except Exception:
+                        frappe.db.rollback()
+                        frappe.log_error(
+                            title="S3 Migration: failed for file {0}".format(file['name'])
+                        )
         return True
 
 
