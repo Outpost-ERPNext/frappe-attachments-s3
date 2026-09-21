@@ -13,9 +13,6 @@ dependencies = [
     "gspread",
     "geopy",
     "qrcode"
-    "qrcode",
-    "cryptography",
-    "pyOpenSSL"
 ]
 
 [tool.bench.frappe-dependencies]
